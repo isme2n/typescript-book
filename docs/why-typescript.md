@@ -1,26 +1,26 @@
-# Why TypeScript
-There are two main goals of TypeScript:
-* Provide an *optional type system* for JavaScript.
-* Provide planned features from future JavaScript editions to current JavaScript engines
+# 왜 타입스크립트를 사용하는가
+타입스크립트는 두개의 주요 목표가 있다:
+* 자바스크립트용의 *타입시스템*을 제공한다.
+* 미래의 자바스크립트 에디션에 제공 될 기능들을 현재의 자바스크립트 엔진에서 제공한다.
 
-The desire for these goals is motivated below.
+이런 목표들에 대한 열망은 다음과 같다.
 
-## The TypeScript type system
+## 타입스크립트 타입 시스템
 
-You might be wondering "**Why add types to JavaScript?**"
+"**왜 자바스크립트에 타입을 추가해야하지?**"라고 의문을 가질 수 있다.
 
-Types have proven ability to enhance code quality and understandability. Large teams (google,microsoft,facebook) have continually arrived at this conclusion. Specifically:
+타입은 코드의 퀄리티를 향상시키고 이해하기 쉽게만든다. 구글,마이크로소프트,페이스북같은 거대한 팀은 이런 문제를 지속적으로 만나게 되었다. 특히:
 
-* Types increase your agility when doing refactoring. *It's better for the compiler to catch errors than to have things fail at runtime*.
-* Types are one of the best forms of documentation you can have. *The function signature is a theorem and the function body is the proof*.
+* 타입은 리팩토링시에 민첩성을 향상시킨다. *컴파일러가 에러를 잡아내는게 런타임중에 실패하는 것보다 낫다*.
+* 타입은 최고의 문서중에 하나이다. *함수의 시그니쳐는 하나의 정리이고 함수는 증명인 것이다*.
 
-However types have a way of being unnecessarily ceremonious. TypeScript is very particular about keeping the barrier to entry as low as possible. Here's how:
+어찌되었든 타입은 불필요하게 격식을 차리는 방식이다. 타입스크립트는 진입장벽을 가능한 낮게 유지하는것을 중요하다:
 
-### Your JavaScript is TypeScript
-TypeScript provides compile time type safety for your JavaScript code. This is no surprise given its name. The great thing is that the types are completely optional. Your JavaScript code `.js` file can be renamed to a `.ts` file and TypeScript will still give you back valid `.js` equivalent to the original JavaScript file. TypeScript is *intentionally* and strictly a superset of JavaScript with optional Type checking.
+### 자바스크립트는 타입스크립트다
+타입스크립트는 컴파일시 자바스크립트코드에 타입 안전성을 제공한다. 타입스크립트라는 이름이 주어진 이유기도하다. 엄청난 것은 그 타입들이 완전히 선택적이라는 것이다. `.js` 파일을 `.ts`로 바꿀 수 있고 타입스크립트는 이를 원래 파일처럼 유효한 `.js` 파일을 반환한다. 타입스크립트는 *쓰고싶을때 쓸 수 있는* 엄격한 자바스크립트 타입체킹을 위한 수퍼셋이다.
 
-### Types can be Implicit
-TypeScript will try to infer as much of the type information as it can in order to give you type safety with minimal cost of productivity during code development. For example, in the following example TypeScript will know that foo is of type `number` below and will give an error on the second line as shown:
+### 타입은 드러나지 않을 수 있다
+타입스크립트는 개발시에 생산성을 높이기 위해 제대로 된 타입안전성을 제공하려고 타입정보를 추론한다. 예를들어, 아래 예제에서 타입스크립트는 foo가 `number` 타입이라는 것을 알기 때문에 두번째 줄에서 에러가 날 것이다. 
 
 ```ts
 var foo = 123;
@@ -28,7 +28,7 @@ foo = '456'; // Error: cannot assign `string` to `number`
 
 // Is foo a number or a string?
 ```
-This type inference is well motivated. If you do stuff like shown in this example, then, in the rest of your code, you cannot be certain that `foo` is a `number` or a `string`. Such issues turn up often in large multi-file code bases. We will deep dive into the type inference rules later.
+이런 경우는 타입 추론에 대한 동기부여가 잘 된다. 예를들어 이 예제의 경우, 우리는 `foo`가 `number` 인지 `string`인지 확신할 수 없다. 이런 이슈가 거대한 멀티파일 코드에서 자주 발생한다. 타입추론에 대한 규칙은 다음에 더 자세히 살펴보자.
 
 ### Types can be Explicit
 As we've mentioned before, TypeScript will infer as much as it can safely, however you can use annotations to:

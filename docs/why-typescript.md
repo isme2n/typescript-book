@@ -28,28 +28,28 @@ foo = '456'; // Error: cannot assign `string` to `number`
 
 // Is foo a number or a string?
 ```
-이런 경우는 타입 추론에 대한 동기부여가 잘 된다. 예를들어 이 예제의 경우, 우리는 `foo`가 `number` 인지 `string`인지 확신할 수 없다. 이런 이슈가 거대한 멀티파일 코드에서 자주 발생한다. 타입추론에 대한 규칙은 다음에 더 자세히 살펴보자.
+이런 경우는 타입 추론에 대한 동기부여가 잘 된다. 예를들어 이 예제의 경우, 우리는 `foo`가 `number` 인지 `string`인지 확신할 수 없다. 이런 이슈가 거대한 멀티파일 코드에서 자주 발생한다. 타입추론에 대한 규칙은 추후에 더 자세히 살펴보자.
 
-### Types can be Explicit
-As we've mentioned before, TypeScript will infer as much as it can safely, however you can use annotations to:
-1. Help along the compiler, and more importantly document stuff for the next developer who has to read your code (that might be future you!).
-1. Enforce that what the compiler sees, is what you thought it should see. That is your understanding of the code matches an algorithmic analysis of the code (done by the compiler).
+### 타입은 명시적이어야 한다
+이전에 이야기했듯, 타입스크립트는 최대한 안전하게 타입을 추론하지만, 어노테이션을 사용해서 추론할 수도 있다:
+1. 컴파일러를 돕고 다음 개발자가 당신의 코드를 읽을때(아마 미래의 `나`일 것이다).
+1. 컴파일러가 보는 것을 당신이 생각한 것과 맞춘다. 코드에 대한 이해는 컴파일러가 하는 알고리즘 분석과 비슷하다.
 
-TypeScript uses postfix type annotations popular in other *optionally* annotated languages (e.g. ActionScript and F#).
+타입스크립트는 ActionScript와 F# 같은 다른 유명한 *선택적* 어노테이션 언어처럼 후위 타입 어노테이션을 사용한다.
 
 ```ts
 var foo: number = 123;
 ```
-So if you do something wrong the compiler will error e.g.:
+예를 들어 아래식처럼 사용한다면 컴파일러는 오류를 뿜어낼 것이다:
 
 ```ts
 var foo: number = '123'; // Error: cannot assign a `string` to a `number`
 ```
 
-We will discuss all the details of all the annotation syntax supported by TypeScript in a later chapter.
+타입스크립트에서 지원하는 모든 어노테이션구문은 추후에 더 자세히 다루어 보자.
 
-### Types are structural
-In some languages (specifically nominally typed ones) static typing results in unnecessary ceremony because even though *you know* that the code will work fine the language semantics force you to copy stuff around. This is why stuff like [automapper for C#](http://automapper.org/) is *vital* for C#. In TypeScript because we really want it to be easy for JavaScript developers with a minimum cognitive overload, types are *structural*. This means that *duck typing* is a first class language construct. Consider the following example. The function `iTakePoint2D` will accept anything that contains all the things (`x` and `y`) it expects:
+### 타입은 구조다
+몇몇 언어들의(특히 명목상 타입언어들의) 정적 타입지정은 불필요한 과정을 만든다. 코드가 잘 작동하는 것을 알고 있더라도 언어의 의미가 타입을 복사하게 만들기 때문이다. 이게 [C#의 automapper](http://automapper.org/)가 왜 C#에 *치명적인가*의 이유이다. 타입스크립트는 자바스크립트개발자가 최소한의 오버로드만으로 쉽게사용하길 바라기 때문에 *구조적*이다. 타입스크립트는 *덕타이핑*을 사용하며 덕타이핑은 최고의 언어구조이다. 예제를 보며 생각해보자. 함수 `iTakePoint2D`는 `x` 와 `y`를 포함하는 모든 것을 받아들일 것이다:
 
 ```ts
 interface Point2D {
@@ -70,8 +70,8 @@ iTakePoint2D(point3D); // extra information okay
 iTakePoint2D({ x: 0 }); // Error: missing information `y`
 ```
 
-### Type errors do not prevent JavaScript emit
-To make it easy for you to migrate your JavaScript code to TypeScript, even if there are compilation errors, by default TypeScript *will emit valid JavaScript* the best that it can. e.g.
+### 타입에러는 자바스크립트의 실행을 막지않는다
+자바스크립트 코드를 타입스크립트로 마이그레이션하는 것을 쉽게하기위해 타입스크립트는 에러가 있더라도, 가능한 최선을 다해 *유효한 자바스크립트*로 바꾸어 준다. 예를들어:
 
 ```ts
 var foo = 123;
@@ -85,24 +85,24 @@ var foo = 123;
 foo = '456';
 ```
 
-So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.
+이로인해 우리는 점진적으로 자바스크립트코드를 타입스크립트로 업그레이드 할 수 있다. 이런 부분이 다른 많은 언어의 컴파일러와 가장 큰 차이라고 할 수 있다. 또한 타입스크립트로 옮겨가는 또 하나의 이유이기도 하다.
 
-### Types can be ambient
-A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*. TypeScript provides you with a sliding scale of how much or how little effort you want to put in your declarations, the more effort you put the more type safety + code intelligence you get. Note that definitions for most of the popular JavaScript libraries have already been written for you by the [DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped) so for most purposes either:
+### 타입은 고요하다
+타입스크립트의 주요 설계 이슈는 개발자가 안전하고 쉽게 자바스크립트라이브러리를 타입스크립트에 사용하게 만드는 것이었다. 타입스크립트는 이를 *선언*을 이용해 구현했다. 타입스크립트는 선언문에 얼마나 많은 노력을 기울이는지에 따른 경사각을 제공한다. 더 많은 노력을 기울여서 작성한 선언문은 더 뛰어난 타입의 안전성과 코드 인텔리전스를 얻을 수 있다. 대부분의 인기있는 자바스크립트 라이브러리의 정의는 이미 [DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped)에 의해 작성되어있다:
 
-1. The definition file already exists.
-1. Or at the very least, you have a vast list of well reviewed TypeScript declaration templates already available
+1. 정의파일이 이미 존재한다.
+1. 또는 최소한의 잘 검토된 타입스크립트 선언 템플릿이 이미 있다.
 
-As a quick example of how you would author your own declaration file, consider a trivial example of [jquery](https://jquery.com/). By default (as is to be expected of good JS code) TypeScript expects you to declare (i.e. use `var` somewhere) before you use a variable
+어떻게 선언 파일을 직접 작성하는지 간단한 예제를 통해 보자.[jquery](https://jquery.com/) 예제이다. 기본적으로 좋은 JS코드 기대되는대로 타입스크립트는 변수를 사용하기 전에 어디선가 `var`를 선언할 것이라고 기대한다. 
 ```ts
 $('.awesome').show(); // Error: cannot find name `$`
 ```
-As a quick fix *you can tell TypeScript* that there is indeed something called `$`:
+*타입스크립트라고 부를 수 있는* 빠른 해결책은 실제 `$`를 부르는 것이다:
 ```ts
 declare var $:any;
 $('.awesome').show(); // Okay!
 ```
-If you want you can build on this basic definition and provide more information to help protect you from errors:
+만약 에러로부터 스스로 보호하기 위고 싶다면, 이 기본적인 선언과 더불어 다양한 정보를 제공하면 된다:
 ```ts
 declare var $:{
     (selector:string): any;
@@ -111,7 +111,7 @@ $('.awesome').show(); // Okay!
 $(123).show(); // Error: selector needs to be a string
 ```
 
-We will discuss the details of creating TypeScript definitions for existing JavaScript in detail later once you know more about TypeScript (e.g. stuff like `interface` and the `any`).
+이미 존재하는 자바스크립트를 타입스크립트 선언 만들기는 `interface` 나 `any`등과 더불어 타입스크립트에 대해 조금 더 알게 되었을 때 더 자세히 다루어 보자.
 
 ## Future JavaScript => Now
 TypeScript provides a number of features that are planned in ES6 for current JavaScript engines (that only support ES5 etc). The typescript team is actively adding these features and this list is only going to get bigger over time and we will cover this in its own section. But just as a specimen here is an example of a class:

@@ -113,8 +113,8 @@ $(123).show(); // Error: selector needs to be a string
 
 이미 존재하는 자바스크립트를 타입스크립트 선언 만들기는 `interface` 나 `any`등과 더불어 타입스크립트에 대해 조금 더 알게 되었을 때 더 자세히 다루어 보자.
 
-## Future JavaScript => Now
-TypeScript provides a number of features that are planned in ES6 for current JavaScript engines (that only support ES5 etc). The typescript team is actively adding these features and this list is only going to get bigger over time and we will cover this in its own section. But just as a specimen here is an example of a class:
+## 미래의 자바스크립트 => 지금
+타입스크립트는 ES6에서 계획된 많은 기능들을 제공한다. 타입스크립트팀은 적극적으로 이런 기능들을 제공하고있으며 이 목록은 갈 수록 커질것이다. 클래스의 예제 표본이있다:
 
 ```ts
 class Point {
@@ -130,14 +130,14 @@ var p2 = new Point(10, 20);
 var p3 = p1.add(p2); // {x:10,y:30}
 ```
 
-and the lovely fat arrow function:
+사랑스러운 뚱살표도 사용가능하다:
 
 ```ts
 var inc = (x)=>x+1;
 ```
 
-### Summary
-In this section we have provided you with the motivation and design goals of TypeScript. With this out of the way we can dig into the nitty gritty details of TypeScript.
+### 요약
+이번 장에서 우리는 타입스크립트의 동기와 설계 목적에 대해 알아보았다. 이 과정을 통해 우리는 타입스크립트를 더욱 자세히 파고들 수 있게되었다.
 
 [](Interfaces are open ended)
 [](Type Inferernce rules)

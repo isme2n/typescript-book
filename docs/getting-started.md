@@ -1,5 +1,5 @@
-* [Getting Started with TypeScript](#getting-started-with-typescript)
-* [TypeScript Version](#typescript-version)
+* [타입스크립트 시작하기](#타입스크립트-시작하기)
+* [타입스크립트 버전](#타입스크립트-버전)
 
 # 타입스크립트 시작하기
 
@@ -34,7 +34,7 @@ npm install -g typescript@next
 ```
 
 ## 소스코드
-이 책에서 사용되는 소스코드는 책의 깃 레포지토리인 https://github.com/basarat/typescript-book/tree/master/code에서 받을 수 있다. 대부분의 코드 샘플들은 alm에 그대로 복사해서 실행해볼 수 있다. 코드에 npm modules같은 추가적인 세팅이 필요할 경우, 아래처럼 링크를 제시할 예정이다.
+이 책에서 사용되는 소스코드는 책의 깃 레포지토리인 https://github.com/basarat/typescript-book/tree/master/code 에서 받을 수 있다. 대부분의 코드 샘플들은 alm에 그대로 복사해서 실행해볼 수 있다. 코드에 npm modules같은 추가적인 세팅이 필요할 경우, 아래처럼 링크를 제시할 예정이다.
 
 `this/will/be/the/link/to/the/code.ts`
 ```ts

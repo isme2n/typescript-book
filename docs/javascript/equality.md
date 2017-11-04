@@ -1,18 +1,13 @@
-## Equality
+## 동등
 
-One thing to be careful about in JavaScript is the difference between `==` and `===`. As JavaScript tries to
-be resilient against programming errors `==` tries to do type coercion between two variables e.g. converts a
-string to a number so that you can compare with a number as shown below:
+자바스크립트에서 조심해야 할 것중에 하나가 `==` 와 `===`의 차이이다. 자바스크립트는 탄력적으로 프로그래밍 오류를 막기위한 시도를했다. `==`은 타입을 강제변환한다. 예를 들어 아래처럼 문자열과 숫자를 비교할 수 있을 것 같다면 스트링을 숫자로 변환하여 비교한다.
 
 ```js
 console.log(5 == "5"); // true   , TS Error
 console.log(5 === "5"); // false , TS Error
 ```
 
-However the choices JavaScript makes are not always ideal. For example in the below example the first statement is false
-because `""` and `"0"` are both strings and are clearly not equal. However in the second case both `0` and the
-empty string (`""`) are falsy (i.e. behave like `false`) and are therefore equal with respect to `==`. Both statements
-are false when you use `===`.
+그러나 이 결정은 자바스크립트를 항상 이상적으로 만들지 못했다. 예를들어 아래와 같은 예제일때, 첫번째 구문은 `""` 와 `"0"`이 서로 문자열로써 다른값이기 떄문에 명확히 거짓이다. 하지만 두번째 경우 `0`과 빈문자열 (`""`)는 false가 나와야 할것 같지만 `==`으로 비교하면 true가 나온다. 두 구문을 모두 `===`로 비교하면 false가 나온다.
 
 ```js
 console.log("" == "0"); // false
@@ -22,8 +17,8 @@ console.log("" === "0"); // false
 console.log(0 === ""); // false
 ```
 
-> Note that `string == number` and `string === number` are both compile time errors in TypeScript, so you don't normally need to worry about this.
+> `string == number` 와 `string === number`는 둘다 타입스크립트에서 오류를 낸다. 그러니 이에 대한 걱정을 할 필요가 없다.
 
-Similar to `==` vs. `===`, there is `!=` vs. `!==`
+`==`과 `===` 처럼 `!=`과 `!==`의 경우도 비슷하다.
 
-So ProTip: Always use `===` and `!==` except for null checks, which we cover later.
+프로팁: null 체크를 제외하고는 항상 `===` 과 `!==`을 사용하자. 이에 대해서는 나중에 다뤄보려한다.

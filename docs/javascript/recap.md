@@ -16,16 +16,16 @@
 타입스크립트는 당신을 결코 제대로 작동하지 않는 자바스크립트 부분으로부터 보호할 것이다. 즉, 이런걸 기억할 필요가 없다.
 
 ```ts
-[] + []; // JavaScript will give you "" (which makes little sense), TypeScript will error
+[] + []; // 자바스크립트에서는 "", 타입스크립트에서는 error
 
 //
-// other things that are nonsensical in JavaScript
-// - don't give a runtime error (making debugging hard)
-// - but TypeScript will give a compile time error (making debugging unnecessary)
+// 그 외 자바스크립트에서 이해할 수 없는 것들
+// - 런타임에러를 주지 않는 것 (디버깅을 어렵게 만든다)
+// - 타입스크립트는 컴파일시에 에러를 준다 (디버깅을 필요없게 만든다)
 //
 {} + []; // JS : 0, TS Error
 [] + {}; // JS : "[object Object]", TS Error
-{} + {}; // JS : NaN or [object Object][object Object] depending upon browser, TS Error
+{} + {}; // JS : NaN 또는 [object Object][object Object] 브라우저에 따라 다르다, TS Error
 "hello" - 1; // JS : NaN, TS Error
 
 function add(a,b) {
